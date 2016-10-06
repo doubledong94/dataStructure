@@ -1,0 +1,7 @@
+gdb main2-5.exe
+set prompt -------------------------------------------------------------------------------------------
+set print pretty on
+start
+break ListInsert
+c
+display 

@@ -1,0 +1,5 @@
+make:$(name).cpp
+	g++ -g -o $(name).exe $(name).cpp
+	gdb $(name).exe
+clean:
+	rm *.exe

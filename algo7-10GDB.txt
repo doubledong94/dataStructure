@@ -1,0 +1,22 @@
+gdb algo7-10.exe
+set prompt -------------------------------------------------------------------------------------------
+set print pretty on
+start
+tbreak CreateFUDG
+c
+step
+
+f7-1.txt
+tbreak 32
+c
+p G.vexs
+tbreak 34
+c
+p G.arcs
+tbreak 39
+c
+p G.arcs
+tbreak 505
+c
+tbreak 513
+c

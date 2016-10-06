@@ -1,0 +1,12 @@
+gdb algo2-2.exe
+set prompt -------------------------------------------------------------------------------------------
+set print pretty on
+start
+tbreak 16
+c
+display *Lc.elem@Lc.length
+display *Lb.elem@Lb.length
+display *La.elem@La.length
+display i
+display j
+display k

@@ -1,0 +1,148 @@
+ // c7-1.h 图的数组(邻接矩阵)存储表示
+ #define INFINITY INT_MAX // 用整型最大值代替∞
+ #define MAX_VERTEX_NUM 26 // 最大顶点个数
+ enum GraphKind{DG,DN,UDG,UDN}; // {有向图,有向网,无向图,无向网}
+ typedef struct
+ {
+   VRType adj; // 顶点关系类型。对无权图，用1(是)或0(否)表示相邻否；对带权图，则为权值
+   InfoType *info; // 该弧相关信息的指针(可无)
+ }ArcCell,AdjMatrix[MAX_VERTEX_NUM][MAX_VERTEX_NUM]; // 二维数组
+ struct MGraph
+ {
+   VertexType vexs[MAX_VERTEX_NUM]; // 顶点向量
+   AdjMatrix arcs; // 邻接矩阵
+   int vexnum,arcnum; // 图的当前顶点数和弧数
+   GraphKind kind; // 图的种类标志
+ };
+
+
+ // c7-2.h 图的邻接表存储表示
+ #define MAX_VERTEX_NUM 20
+ enum GraphKind{DG,DN,UDG,UDN}; // {有向图,有向网,无向图,无向网}
+ struct ArcNode
+ {
+   int adjvex; // 该弧所指向的顶点的位置
+   ArcNode *nextarc; // 指向下一条弧的指针
+   InfoType *info; // 网的权值指针
+ }; // 表结点
+ typedef struct
+ {
+   VertexType data; // 顶点信息
+   ArcNode *firstarc; // 第一个表结点的地址,指向第一条依附该顶点的弧的指针
+ }VNode,AdjList[MAX_VERTEX_NUM]; // 头结点
+ struct ALGraph
+ {
+   AdjList vertices;
+   int vexnum,arcnum; // 图的当前顶点数和弧数
+   GraphKind kind; // 图的种类标志
+ };
+
+
+ // c7-3.h 有向图的十字链表存储表示
+ #define MAX_VERTEX_NUM 20
+ struct ArcBox // 弧结点
+ {
+   int tailvex,headvex; // 该弧的尾和头顶点的位置
+   ArcBox *hlink,*tlink; // 分别为弧头相同和弧尾相同的弧的链域
+   InfoType *info; // 该弧相关信息的指针，可指向权值或其他信息
+ };
+ struct VexNode // 顶点结点
+ {
+   VertexType data;
+   ArcBox *firstin,*firstout; // 分别指向该顶点第一条入弧和出弧
+ };
+ struct OLGraph
+ {
+   VexNode xlist[MAX_VERTEX_NUM]; // 表头向量(数组)
+   int vexnum,arcnum; // 有向图的当前顶点数和弧数
+ };
+
+
+ // c7-4.h 无向图的邻接多重表存储表示
+ #define MAX_VERTEX_NUM 20
+ enum VisitIf{unvisited,visited};
+ struct EBox
+ {
+   VisitIf mark; // 访问标记
+   int ivex,jvex; // 该边依附的两个顶点的位置
+   EBox *ilink,*jlink; // 分别指向依附这两个顶点的下一条边
+   InfoType *info; // 该边信息指针，可指向权值或其他信息
+ };
+ struct VexBox
+ {
+   VertexType data;
+   EBox *firstedge; // 指向第一条依附该顶点的边
+ };
+ struct AMLGraph
+ {
+   VexBox adjmulist[MAX_VERTEX_NUM];
+   int vexnum,edgenum; // 无向图的当前顶点数和边数
+ };
+
+
+ // c7-21.h 图的邻接表存储表示(与单链表的变量类型建立联系)
+ #define MAX_VERTEX_NUM 20
+ enum GraphKind{DG,DN,UDG,UDN}; // {有向图,有向网,无向图,无向网}
+ struct ElemType // 加
+ {
+   int adjvex; // 该弧所指向的顶点的位置
+   InfoType *info; // 网的权值指针
+ };
+
+ struct ArcNode // 改
+ {
+   ElemType data; // 除指针以外的部分都属于ElemType
+   ArcNode *nextarc; // 指向下一条弧的指针
+ }; // 表结点
+
+ typedef struct
+ {
+   VertexType data; // 顶点信息
+   ArcNode *firstarc; // 第一个表结点的地址,指向第一条依附该顶点的弧的指针
+ }VNode,AdjList[MAX_VERTEX_NUM]; // 头结点
+
+ struct ALGraph
+ {
+   AdjList vertices;
+   int vexnum,arcnum; // 图的当前顶点数和弧数
+   GraphKind kind; // 图的种类标志
+ };
+ #define LNode ArcNode // 加，定义单链表的结点类型是图的表结点的类型
+ #define next nextarc // 加，定义单链表结点的指针域是表结点指向下一条弧的指针域
+ typedef ArcNode *LinkList; // 加，定义指向单链表结点的指针是指向图的表结点的指针
+
+
+
+ // c7-31.h 有向图的十字链表存储表示(与单链表的变量类型建立联系)
+ #define MAX_VERTEX_NUM 20
+ struct ArcBox1 // 用来定义hlink的类型
+ {
+   int tailvex,headvex; // 该弧的尾和头顶点的位置
+   InfoType *info; // 该弧相关信息的指针，可指向权值或其他信息
+   ArcBox1 *hlink,*tlink; // 分别为弧头相同弧尾相同的弧的链域
+ };
+ struct ElemType
+ {
+   int tailvex,headvex; // 该弧的尾和头顶点的位置
+   InfoType *info; // 该弧相关信息的指针，可指向权值或其他信息
+   ArcBox1 *hlink;
+ };
+ struct ArcBox
+ {
+   ElemType data;
+   ArcBox *tlink;
+ };
+ struct VexNode // 顶点结点
+ {
+   VertexType data;
+   ArcBox1 *firstin; // 指向该顶点第一条入弧
+   ArcBox *firstout; // 指向该顶点第一条出弧
+ };
+ struct OLGraph
+ {
+   VexNode xlist[MAX_VERTEX_NUM]; // 表头向量(数组)
+   int vexnum,arcnum; // 有向图的当前顶点数和弧数
+ };
+ #define LNode ArcBox // 加，定义单链表的结点类型是图的表结点的类型
+ #define next tlink // 加，定义单链表结点的指针域是表结点指向下一条出弧的指针域
+ typedef ArcBox *LinkList; // 加，定义指向单链表结点的指针是指向图的表结点的指针

@@ -1,0 +1,23 @@
+gdb main4-1.exe
+set prompt -------------------------------------------------------------------------------------------
+set print pretty on
+start
+tbreak bo4-1.cpp:StrAssign
+tbreak bo4-1.cpp:16
+tbreak bo4-1.cpp:StrCopy
+tbreak bo4-1.cpp:25
+tbreak bo4-1.cpp:StrEmpty
+tbreak bo4-1.cpp:StrCompare
+tbreak bo4-1.cpp:41
+tbreak bo4-1.cpp:StrLength
+tbreak bo4-1.cpp:ClearString
+tbreak bo4-1.cpp:Concat
+tbreak bo4-1.cpp:64
+tbreak bo4-1.cpp:73
+tbreak bo4-1.cpp:SubString
+tbreak bo4-1.cpp:Index
+tbreak bo4-1.cpp:StrInsert
+tbreak bo4-1.cpp:StrDelete
+tbreak bo4-1.cpp:Replace
+tbreak bo4-1.cpp:StrPrint
+c

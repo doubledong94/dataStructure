@@ -1,0 +1,11 @@
+gdb main2-31.exe
+set prompt -------------------------------------------------------------------------------------------
+set print pretty on
+start
+display *space@3
+display *L@5
+display *(L+98)@2
+display k
+
+break 20
+c

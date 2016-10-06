@@ -1,0 +1,15 @@
+gdb algo7-11.exe
+set prompt -------------------------------------------------------------------------------------------
+set print pretty on
+start
+tbreak CreateGraphF
+c
+step
+
+f7-1.txt
+s
+
+2
+tbreak 76
+c
+p G.vertices

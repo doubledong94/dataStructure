@@ -1,0 +1,12 @@
+gdb main2-2.exe
+set prompt -------------------------------------------------------------------------------------------
+set print pretty on
+start
+
+break ListInsert
+c
+display L
+display q
+display p
+display *L.elem@L.length+1
+c

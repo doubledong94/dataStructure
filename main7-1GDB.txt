@@ -1,0 +1,6 @@
+gdb main7-1.exe
+set prompt -------------------------------------------------------------------------------------------
+set print pretty on
+start
+tbreak CreateDG
+c

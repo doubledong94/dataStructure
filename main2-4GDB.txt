@@ -1,0 +1,15 @@
+gdb main2-4.exe
+set prompt -------------------------------------------------------------------------------------------
+set print pretty on
+start
+break GetElem
+c
+
+break ListInsert
+c
+display *p
+display p
+display *L
+display L
+display *s
+display s
